@@ -1,0 +1,34 @@
+
+
+{% liquid
+  assign product = closest.product
+  assign flavor_notes = product.metafields.custom.flavor_notes.value
+%}
+
+{% if flavor_notes != blank %}
+  <p class="flavor-notes" {{ block.shopify_attributes }}>{{ flavor_notes }}</p>
+{% endif %}
+
+{% stylesheet %}
+  .flavor-notes {
+    font-family: 'CactusClassicalSerif-Regular', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.3;
+    color: #6e6a61;
+    margin: 0;
+  }
+
+  @media screen and (min-width: 750px) {
+    .flavor-notes {
+      font-size: 13.5px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Flavor notes",
+  "tag": null
+}
+{% endschema %}

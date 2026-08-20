@@ -111,7 +111,10 @@
             {% endif %}
             ref="menuitem"
           >
-            <span class="menu-list__link-title">{{- link.title -}}</span>
+            <span class="menu-list__link-title">
+              <span class="menu-list__link-index" aria-hidden="true">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+              {{- link.title -}}
+            </span>
           </a>
           {%- if link.links != blank -%}
             <button
@@ -398,6 +401,10 @@
 
   .menu-list__link-title {
     padding-inline: var(--gap-sm);
+  }
+
+  .menu-list__link-index {
+    display: none;
   }
   [slot='overflow'] .menu-list__link-title {
     padding-inline: 0;
