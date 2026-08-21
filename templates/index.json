@@ -123,12 +123,8 @@
                   "blocks": {}
                 },
                 "swatch_dot": {
-                  "type": "text",
-                  "settings": {
-                    "text": "<p><span class=\"wares-swatch-dot\"></span></p>",
-                    "type_preset": "paragraph",
-                    "width": "fit-content"
-                  },
+                  "type": "_swatch-dot",
+                  "settings": {},
                   "blocks": {}
                 }
               },
