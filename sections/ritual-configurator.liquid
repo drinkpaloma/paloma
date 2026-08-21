@@ -1,0 +1,189 @@
+{% doc %}
+  Static visual shell for the Ritual subscription builder (coffee / bag
+  count / frequency / price). No selling plans exist in this store yet
+  (Recharge is installed but not yet configured with products or a
+  subscription program), so this section is presentational only — the
+  option chips and Subscribe button don't add to cart. Once real
+  products + Recharge selling plans exist, this section should be
+  replaced with one driven by product.selling_plan_groups.
+{% enddoc %}
+
+<div class="ritual-configurator section-{{ section.id }}-padding" {{ section.shopify_attributes }}>
+  <div class="ritual-configurator__panel">
+    <div class="ritual-configurator__group">
+      <p class="ritual-configurator__step">01&nbsp;&nbsp;{{ section.settings.step_1_label }}</p>
+      <div class="ritual-configurator__chips">
+        {% assign coffee_options = section.settings.coffee_options | newline_to_br | strip_newlines | split: '<br />' %}
+        {% for option in coffee_options %}
+          <span class="ritual-configurator__chip{% if forloop.first %} is-active{% endif %}">{{ option | strip }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="ritual-configurator__group">
+      <p class="ritual-configurator__step">02&nbsp;&nbsp;{{ section.settings.step_2_label }}</p>
+      <div class="ritual-configurator__chips">
+        {% assign bag_options = section.settings.bag_options | newline_to_br | strip_newlines | split: '<br />' %}
+        {% for option in bag_options %}
+          <span class="ritual-configurator__chip{% if forloop.index == section.settings.active_bag_index %} is-active{% endif %}">{{ option | strip }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="ritual-configurator__group">
+      <p class="ritual-configurator__step">03&nbsp;&nbsp;{{ section.settings.step_3_label }}</p>
+      <div class="ritual-configurator__chips">
+        {% assign frequency_options = section.settings.frequency_options | newline_to_br | strip_newlines | split: '<br />' %}
+        {% for option in frequency_options %}
+          <span class="ritual-configurator__chip{% if forloop.index == section.settings.active_frequency_index %} is-active{% endif %}">{{ option | strip }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="ritual-configurator__summary">
+      <div class="ritual-configurator__price">
+        <span class="ritual-configurator__price-amount">{{ section.settings.price }}</span>
+        <span class="ritual-configurator__price-unit">/ {{ section.settings.price_unit }}</span>
+      </div>
+      <button type="button" class="button ritual-configurator__subscribe" disabled title="{{ 'Connect a subscription product to enable this' }}">
+        {{ section.settings.button_label }}
+      </button>
+    </div>
+    <p class="ritual-configurator__note">{{ section.settings.note }}</p>
+  </div>
+
+  <div class="ritual-configurator__media">
+    {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw' }}
+  </div>
+</div>
+
+{% stylesheet %}
+  .ritual-configurator {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: {{ settings.color_palette.background }};
+
+    @media screen and (min-width: 750px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .ritual-configurator__panel {
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .ritual-configurator__step {
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: {{ settings.color_palette.color4 }};
+    margin: 0 0 12px;
+  }
+
+  .ritual-configurator__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ritual-configurator__chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 20px;
+    border: 1px solid {{ settings.color_palette.color2 }};
+    color: {{ settings.color_palette.foreground }};
+    font-size: 1rem;
+  }
+
+  .ritual-configurator__chip.is-active {
+    border-color: {{ settings.color_palette.foreground }};
+    border-width: 2px;
+  }
+
+  .ritual-configurator__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 16px;
+    border-top: 1px solid {{ settings.color_palette.color2 }};
+  }
+
+  .ritual-configurator__price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .ritual-configurator__price-amount {
+    font-family: var(--font-heading--family);
+    font-size: 2.25rem;
+  }
+
+  .ritual-configurator__price-unit {
+    font-family: var(--font-heading--family);
+    font-style: italic;
+    font-size: 1rem;
+    color: {{ settings.color_palette.color4 }};
+  }
+
+  .ritual-configurator__subscribe {
+    background: {{ settings.color_palette.foreground }};
+    color: {{ settings.color_palette.background }};
+    border: none;
+    padding: 16px 28px;
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+
+  .ritual-configurator__note {
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: {{ settings.color_palette.color4 }};
+    margin: 0;
+  }
+
+  .ritual-configurator__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Ritual configurator (static)",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Visual placeholder only — chips and Subscribe are not wired to a real product or selling plan. Rebuild once real products and a Recharge subscription program exist."
+    },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "step_1_label", "label": "Step 1 label", "default": "Choose your coffee" },
+    { "type": "textarea", "id": "coffee_options", "label": "Coffee options (one per line)", "default": "Dawn house blend\nRotating single origin\nDusk (decaf)\nRoaster's choice" },
+    { "type": "text", "id": "step_2_label", "label": "Step 2 label", "default": "How much" },
+    { "type": "textarea", "id": "bag_options", "label": "Bag options (one per line)", "default": "1 bag\n2 bags\n4 bags" },
+    { "type": "range", "id": "active_bag_index", "label": "Highlighted bag option", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "text", "id": "step_3_label", "label": "Step 3 label", "default": "How often" },
+    { "type": "textarea", "id": "frequency_options", "label": "Frequency options (one per line)", "default": "Weekly\nEvery 2 weeks\nMonthly" },
+    { "type": "range", "id": "active_frequency_index", "label": "Highlighted frequency option", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "text", "id": "price", "label": "Price", "default": "$39.60" },
+    { "type": "text", "id": "price_unit", "label": "Price unit", "default": "shipment" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Subscribe" },
+    { "type": "text", "id": "note", "label": "Note", "default": "10% off · Free shipping · Pause anytime" }
+  ],
+  "presets": [{ "name": "Ritual configurator (static)" }]
+}
+{% endschema %}
