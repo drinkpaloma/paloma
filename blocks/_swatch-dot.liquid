@@ -1,0 +1,17 @@
+
+
+{% doc %}
+  Small fixed-size color dot. A plain <span class="..."> can't be entered
+  through a richtext "text" setting (Shopify's sanitizer strips class/style
+  attributes there), so this renders it as raw block markup instead — see
+  the .wares-swatch-dot rule in the Custom CSS block for the sizing/color.
+{% enddoc %}
+
+<span class="wares-swatch-dot" {{ block.shopify_attributes }}></span>
+
+{% schema %}
+{
+  "name": "Swatch dot",
+  "tag": null
+}
+{% endschema %}
