@@ -2,40 +2,41 @@
   Static visual shell for the Ritual subscription builder (coffee / bag
   count / frequency / price). No selling plans exist in this store yet
   (Recharge is installed but not yet configured with products or a
-  subscription program), so this section is presentational only — the
-  option chips and Subscribe button don't add to cart. Once real
-  products + Recharge selling plans exist, this section should be
-  replaced with one driven by product.selling_plan_groups.
+  subscription program), so the option chips and Subscribe button don't
+  add to cart -- but the chips ARE genuinely interactive (click + keyboard)
+  so the picker itself feels real. Once real products + Recharge selling
+  plans exist, this section should be replaced with one driven by
+  product.selling_plan_groups.
 {% enddoc %}
 
 <div class="ritual-configurator section-{{ section.id }}-padding" {{ section.shopify_attributes }}>
   <div class="ritual-configurator__panel">
     <div class="ritual-configurator__group">
-      <p class="ritual-configurator__step">01&nbsp;&nbsp;{{ section.settings.step_1_label }}</p>
-      <div class="ritual-configurator__chips">
+      <p class="ritual-configurator__step" id="ritual-step-1-{{ section.id }}">01&nbsp;&nbsp;{{ section.settings.step_1_label }}</p>
+      <div class="ritual-configurator__chips" role="group" aria-labelledby="ritual-step-1-{{ section.id }}">
         {% assign coffee_options = section.settings.coffee_options | newline_to_br | strip_newlines | split: '<br />' %}
         {% for option in coffee_options %}
-          <span class="ritual-configurator__chip{% if forloop.first %} is-active{% endif %}">{{ option | strip }}</span>
+          <button type="button" class="ritual-configurator__chip" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ option | strip }}</button>
         {% endfor %}
       </div>
     </div>
 
     <div class="ritual-configurator__group">
-      <p class="ritual-configurator__step">02&nbsp;&nbsp;{{ section.settings.step_2_label }}</p>
-      <div class="ritual-configurator__chips">
+      <p class="ritual-configurator__step" id="ritual-step-2-{{ section.id }}">02&nbsp;&nbsp;{{ section.settings.step_2_label }}</p>
+      <div class="ritual-configurator__chips" role="group" aria-labelledby="ritual-step-2-{{ section.id }}">
         {% assign bag_options = section.settings.bag_options | newline_to_br | strip_newlines | split: '<br />' %}
         {% for option in bag_options %}
-          <span class="ritual-configurator__chip{% if forloop.index == section.settings.active_bag_index %} is-active{% endif %}">{{ option | strip }}</span>
+          <button type="button" class="ritual-configurator__chip" aria-pressed="{% if forloop.index == section.settings.active_bag_index %}true{% else %}false{% endif %}">{{ option | strip }}</button>
         {% endfor %}
       </div>
     </div>
 
     <div class="ritual-configurator__group">
-      <p class="ritual-configurator__step">03&nbsp;&nbsp;{{ section.settings.step_3_label }}</p>
-      <div class="ritual-configurator__chips">
+      <p class="ritual-configurator__step" id="ritual-step-3-{{ section.id }}">03&nbsp;&nbsp;{{ section.settings.step_3_label }}</p>
+      <div class="ritual-configurator__chips" role="group" aria-labelledby="ritual-step-3-{{ section.id }}">
         {% assign frequency_options = section.settings.frequency_options | newline_to_br | strip_newlines | split: '<br />' %}
         {% for option in frequency_options %}
-          <span class="ritual-configurator__chip{% if forloop.index == section.settings.active_frequency_index %} is-active{% endif %}">{{ option | strip }}</span>
+          <button type="button" class="ritual-configurator__chip" aria-pressed="{% if forloop.index == section.settings.active_frequency_index %}true{% else %}false{% endif %}">{{ option | strip }}</button>
         {% endfor %}
       </div>
     </div>
@@ -56,6 +57,20 @@
     {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw' }}
   </div>
 </div>
+
+{% # Click-to-select within each option group; real <button> elements already get %}
+{% # keyboard activation (Tab + Enter/Space) for free, so no key handling needed here. %}
+<script>
+  document.querySelectorAll('.ritual-configurator__chips').forEach(function (group) {
+    group.addEventListener('click', function (event) {
+      var chip = event.target.closest('.ritual-configurator__chip');
+      if (!chip) return;
+      group.querySelectorAll('.ritual-configurator__chip').forEach(function (c) {
+        c.setAttribute('aria-pressed', c === chip ? 'true' : 'false');
+      });
+    });
+  });
+</script>
 
 {% stylesheet %}
   .ritual-configurator {
@@ -90,18 +105,41 @@
     gap: 10px;
   }
 
+  /* border-width stays constant across states -- only color/background
+     change -- so selecting a chip never shifts layout by a pixel. */
   .ritual-configurator__chip {
     display: inline-flex;
     align-items: center;
     padding: 14px 20px;
-    border: 1px solid {{ settings.color_palette.color2 }};
+    border: 2px solid {{ settings.color_palette.color2 }};
+    background: transparent;
     color: {{ settings.color_palette.foreground }};
+    font-family: inherit;
     font-size: 1rem;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease;
   }
 
-  .ritual-configurator__chip.is-active {
+  .ritual-configurator__chip:hover {
+    border-color: {{ settings.color_palette.color1 }};
+  }
+
+  .ritual-configurator__chip:focus-visible {
+    outline: 2px solid {{ settings.color_palette.color1 }};
+    outline-offset: 2px;
+  }
+
+  /* Selection is never color-only: border color, a faint fill, and a
+     checkmark all change together. */
+  .ritual-configurator__chip[aria-pressed='true'] {
     border-color: {{ settings.color_palette.foreground }};
-    border-width: 2px;
+    background: {{ settings.color_palette.color2 }}4d;
+  }
+
+  .ritual-configurator__chip[aria-pressed='true']::after {
+    content: '✓';
+    margin-left: 8px;
+    font-size: 0.85em;
   }
 
   .ritual-configurator__summary {
