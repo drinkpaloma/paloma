@@ -1229,7 +1229,7 @@
     flex-direction: column;
     width: 100%;
     min-height: 100%;
-    padding: 26px 20px;
+    padding: 20px 20px 26px;
     box-sizing: border-box;
   }
 
@@ -1261,9 +1261,18 @@
     gap: 20px;
   }
 
-  /* Logo (default: center column) sits above the menu (default: left column) */
+  /* Logo (default: center column) sits above the menu (default: left column),
+     in its own bordered header strip that spans the full rail width -- the
+     negative inline margin cancels #header-component's own inset so the
+     bottom border reaches both rail edges (left edge to the vertical
+     divider on the right), rather than stopping at the logo's own bounds. */
   #header-component .header__column--center {
     order: -1;
+    margin-inline: -20px;
+    padding-inline: 20px;
+    padding-block-end: 18px;
+    margin-block-end: 6px;
+    border-bottom: 1px solid #5240312e;
   }
 
   #header-component .header__column--left {
@@ -1308,19 +1317,19 @@
     font-size: 9.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #6e6a61;
+    color: {{ settings.color_palette.foreground }};
     text-decoration: none;
   }
 
   #header-component .header__rail-nav-link:hover,
   #header-component .header__rail-nav-link:focus,
   #header-component .header__rail-nav-link[aria-current='page'] {
-    color: #1c1a17;
+    color: {{ settings.color_palette.color1 }};
   }
 
   #header-component .header__rail-nav-index {
     margin-right: 6px;
-    opacity: 0.6;
+    color: {{ settings.color_palette.color4 }};
   }
 
   /* margin-top: auto (not justify-content: space-between, and not an
@@ -1341,7 +1350,7 @@
     font-family: 'CactusClassicalSerif-Regular', Georgia, serif;
     font-style: italic;
     font-size: 13px;
-    color: #6e6a61;
+    color: {{ settings.color_palette.color4 }};
     letter-spacing: normal;
     margin: 0;
   }
@@ -1377,7 +1386,7 @@
     font-size: 9.5px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #1c1a17;
+    color: {{ settings.color_palette.foreground }};
     text-decoration: none;
     min-height: 0;
   }
