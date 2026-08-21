@@ -1,0 +1,99 @@
+
+
+{% liquid
+  assign index = block.settings.index
+  assign title = block.settings.title
+  assign subtitle = block.settings.subtitle
+  assign duration = block.settings.duration
+%}
+
+<div class="track-row" {{ block.shopify_attributes }}>
+  <span class="track-row__index">({{ index }})</span>
+  <span class="track-row__title">{{ title }}</span>
+  <span class="track-row__subtitle">{{ subtitle }}</span>
+  <span class="track-row__duration">{{ duration }}</span>
+</div>
+
+{% stylesheet %}
+  .track-row {
+    display: grid;
+    grid-template-columns: 60px 1fr auto auto;
+    align-items: baseline;
+    gap: 24px;
+    padding-block: 20px;
+    border-bottom: 1px solid rgba(28, 26, 23, 0.12);
+  }
+
+  .track-row__index {
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.8rem;
+    color: {{ settings.color_palette.color4 }};
+  }
+
+  .track-row__title {
+    font-family: var(--font-heading--family);
+    font-size: 1.75rem;
+    color: {{ settings.color_palette.foreground }};
+  }
+
+  .track-row__subtitle {
+    font-family: var(--font-heading--family);
+    font-style: italic;
+    font-size: 1rem;
+    color: {{ settings.color_palette.color4 }};
+    justify-self: end;
+  }
+
+  .track-row__duration {
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: {{ settings.color_palette.foreground }};
+    justify-self: end;
+  }
+
+  @media screen and (max-width: 749px) {
+    .track-row {
+      grid-template-columns: 40px 1fr;
+      row-gap: 4px;
+    }
+
+    .track-row__subtitle,
+    .track-row__duration {
+      justify-self: start;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Track row",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "index",
+      "label": "Number",
+      "default": "01"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Morning, unhurried"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Pairing",
+      "default": "drink with Dawn"
+    },
+    {
+      "type": "text",
+      "id": "duration",
+      "label": "Duration",
+      "default": "48 MIN"
+    }
+  ]
+}
+{% endschema %}

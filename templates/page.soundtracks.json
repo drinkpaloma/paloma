@@ -1,0 +1,119 @@
+{
+  "sections": {
+    "heading": {
+      "type": "section",
+      "blocks": {
+        "title": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>{{ closest.page.title | default: 'Soundtracks' }}</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-heading--family)",
+            "font_size": "3.25rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "subtext": {
+          "type": "text",
+          "settings": {
+            "text": "<p>A MIX FOR EVERY ROAST · UPDATED MONTHLY</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h6",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.8rem",
+            "line_height": "normal",
+            "letter_spacing": "0.06em",
+            "case": "uppercase",
+            "text_color": "{{ settings.color_palette.color4 }}",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 8,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "divider": {
+          "type": "_divider",
+          "settings": {
+            "thickness": 1,
+            "divider_color": "{{ settings.color_palette.color4 }}",
+            "corner_radius": "square",
+            "width_percent": 100,
+            "padding-block-start": 24,
+            "padding-block-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["title", "subtext", "divider"],
+      "name": "t:names.section",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 0,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 64,
+        "padding-block-end": 0
+      }
+    },
+    "tracks": {
+      "type": "section",
+      "blocks": {
+        "track_1": {
+          "type": "_track-row",
+          "settings": { "index": "01", "title": "Morning, unhurried", "subtitle": "drink with Dawn", "duration": "48 MIN" },
+          "blocks": {}
+        },
+        "track_2": {
+          "type": "_track-row",
+          "settings": { "index": "02", "title": "Kitchen light", "subtitle": "drink with Ecuador", "duration": "39 MIN" },
+          "blocks": {}
+        },
+        "track_3": {
+          "type": "_track-row",
+          "settings": { "index": "03", "title": "Long drive, no radio", "subtitle": "drink with Java", "duration": "62 MIN" },
+          "blocks": {}
+        },
+        "track_4": {
+          "type": "_track-row",
+          "settings": { "index": "04", "title": "Slow bar, Sunday", "subtitle": "drink with Ethiopia 02", "duration": "55 MIN" },
+          "blocks": {}
+        },
+        "track_5": {
+          "type": "_track-row",
+          "settings": { "index": "05", "title": "After the light goes", "subtitle": "drink with Dusk", "duration": "44 MIN" },
+          "blocks": {}
+        }
+      },
+      "block_order": ["track_1", "track_2", "track_3", "track_4", "track_5"],
+      "name": "t:names.section",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 0,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 8,
+        "padding-block-end": 64
+      }
+    }
+  },
+  "order": ["heading", "tracks"]
+}

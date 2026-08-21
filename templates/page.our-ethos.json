@@ -1,0 +1,277 @@
+{
+  "sections": {
+    "intro": {
+      "type": "section",
+      "blocks": {
+        "content": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "gap": 24,
+            "width": "fill"
+          },
+          "blocks": {
+            "eyebrow": {
+              "type": "text",
+              "settings": {
+                "text": "<p>ETHOS</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h6",
+                "font": "var(--font-subheading--family)",
+                "font_size": "0.75rem",
+                "line_height": "normal",
+                "letter_spacing": "0.1em",
+                "case": "uppercase",
+                "text_color": "{{ settings.color_palette.color4 }}",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "headline": {
+              "type": "text",
+              "settings": {
+                "text": "<h1>For artisans. Dreamers. Seekers of moments.</h1>",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "h1",
+                "font": "var(--font-heading--family)",
+                "font_size": "3.25rem",
+                "line_height": "1.05",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "body": {
+              "type": "text",
+              "settings": {
+                "text": "<p>In an age of hurried mornings and endless tasks, Paloma is your daily reminder to pause for the best of life. Take a second. Watch the light as each drop brews. Breathe deep. Receive the peace offered in the here and now.</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1.1rem",
+                "line_height": "1.5",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "tagline": {
+              "type": "text",
+              "settings": {
+                "text": "<p><em>for the_ritual of it all</em></p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "paragraph",
+                "font": "var(--font-heading--family)",
+                "font_size": "1.25rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "text_color": "{{ settings.color_palette.color1 }}",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["eyebrow", "headline", "body", "tagline"]
+        }
+      },
+      "block_order": ["content"],
+      "name": "t:names.section",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 24,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 64,
+        "padding-block-end": 48
+      }
+    },
+    "practices": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image"
+          }
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center"
+          },
+          "blocks": {
+            "grown": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 8,
+                "width": "fill"
+              },
+              "blocks": {
+                "grown_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>HOW IT'S GROWN</p>",
+                    "type_preset": "h6",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
+                    "letter_spacing": "0.1em",
+                    "case": "uppercase",
+                    "text_color": "{{ settings.color_palette.color4 }}",
+                    "width": "fit-content"
+                  },
+                  "blocks": {}
+                },
+                "grown_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Regenerative and organic practices at origin, verified farm by farm rather than by certificate alone.</p>",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1.1rem",
+                    "width": "fit-content",
+                    "max_width": "normal"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["grown_label", "grown_text"]
+            },
+            "paid": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 8,
+                "width": "fill"
+              },
+              "blocks": {
+                "paid_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>HOW IT'S PAID FOR</p>",
+                    "type_preset": "h6",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
+                    "letter_spacing": "0.1em",
+                    "case": "uppercase",
+                    "text_color": "{{ settings.color_palette.color4 }}",
+                    "width": "fit-content"
+                  },
+                  "blocks": {}
+                },
+                "paid_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Fair wages that honor time. We publish what we pay above market for every lot.</p>",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1.1rem",
+                    "width": "fit-content",
+                    "max_width": "normal"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["paid_label", "paid_text"]
+            },
+            "roasted": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "gap": 8,
+                "width": "fill"
+              },
+              "blocks": {
+                "roasted_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>HOW IT'S ROASTED</p>",
+                    "type_preset": "h6",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
+                    "letter_spacing": "0.1em",
+                    "case": "uppercase",
+                    "text_color": "{{ settings.color_palette.color4 }}",
+                    "width": "fit-content"
+                  },
+                  "blocks": {}
+                },
+                "roasted_text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Small batches, weekly, on a machine we know by ear. Profiles built for clarity over char.</p>",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1.1rem",
+                    "width": "fit-content",
+                    "max_width": "normal"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["roasted_label", "roasted_text"]
+            }
+          },
+          "block_order": ["grown", "paid", "roasted"]
+        }
+      },
+      "block_order": ["media", "content"],
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "left",
+        "media_width": "medium",
+        "media_height": "auto",
+        "section_width": "page-width",
+        "gap": 48,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 64
+      }
+    }
+  },
+  "order": ["intro", "practices"]
+}
