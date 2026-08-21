@@ -12,8 +12,10 @@
 {% assign alignment = alignment | default: block_settings.alignment %}
 {% assign display_author = author | default: article.author %}
 {% assign display_date = date | default: article.published_at %}
+{% assign display_category = article.tags.first %}
+{% assign display_read_time = article.metafields.custom.read_time.value %}
 
-{%- if block_settings.show_date or block_settings.show_author -%}
+{%- if block_settings.show_date or block_settings.show_author or block_settings.show_category or block_settings.show_read_time -%}
   <div
     class="
       blog-post-details
@@ -38,6 +40,18 @@
 
     {%- if block_settings.show_author -%}
       <span>{{ display_author }}</span>
+    {%- endif -%}
+
+    {%- if block_settings.show_category and display_category != blank -%}
+      <span>{{ display_category | upcase }}</span>
+    {%- endif -%}
+
+    {%- if block_settings.show_category and block_settings.show_read_time and display_category != blank and display_read_time != blank -%}
+      <span>{{ 'content.blog_details_separator' | t }}</span>
+    {%- endif -%}
+
+    {%- if block_settings.show_read_time and display_read_time != blank -%}
+      <span>{{ display_read_time }}</span>
     {%- endif -%}
   </div>
 {% endif %}
@@ -73,6 +87,18 @@
       "id": "show_author",
       "label": "t:settings.show_author",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_category",
+      "label": "Show category (first tag)",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_read_time",
+      "label": "Show read time (custom.read_time metafield)",
+      "default": false
     },
     {
       "type": "header",
