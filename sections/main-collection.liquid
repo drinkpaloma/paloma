@@ -93,46 +93,28 @@
 </collection-component>
 
 {% stylesheet %}
-  /* Numbered "(01)" badge on each card, top-left — mirrors the shop-page
-     mockup. Uses a CSS counter scoped to this grid so it always reads
-     01, 02, 03... for whatever's currently rendered (a page of results,
-     an infinite-scroll batch), rather than an absolute product index. */
-  .product-grid__item {
-    counter-increment: card-index;
-    position: relative;
-  }
-
-  .product-grid-view {
-    counter-reset: card-index;
-  }
-
-  .product-grid__item::before {
-    content: '(' counter(card-index, decimal-leading-zero) ')';
-    position: absolute;
-    top: 16px;
-    left: 16px;
-    z-index: 2;
+  /* Left sidebar filter typography -- small, uppercase, letter-spaced
+     group labels; plain body-weight option links -- reads as quiet
+     wayfinding rather than a UI control, in keeping with the rest of
+     the site's understated type. Structural filtering behavior (the
+     vertical/sidebar layout itself) is Vessel's own and untouched. */
+  .facets--vertical .facets__summary,
+  .facets--vertical legend,
+  .facets--vertical .sort-select {
     font-family: var(--font-subheading--family, ui-monospace, monospace);
     font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    color: #f4f1e7;
-    pointer-events: none;
-  }
-
-  /* Light typographic pass on the native filter bar — mono, uppercase,
-     letter-spaced, underlined active state — to read like the mockup's
-     tab row. Structural filtering behavior is untouched. */
-  .facets--horizontal .facets__form,
-  .facets--horizontal .facets-horizontal-remove,
-  .facets--horizontal .sort-select {
-    font-family: var(--font-subheading--family, ui-monospace, monospace);
-    font-size: 0.8rem;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    color: {{ settings.color_palette.foreground }};
   }
 
-  .facets--horizontal [aria-current='true'],
-  .facets--horizontal .facets-horizontal-remove--active {
+  .facets--vertical .facets__form {
+    font-family: var(--font-body--family);
+    font-size: 0.9rem;
+    color: {{ settings.color_palette.foreground }};
+  }
+
+  .facets--vertical [aria-current='true'] {
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-color: {{ settings.color_palette.color1 }};
