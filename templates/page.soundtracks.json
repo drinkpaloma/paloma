@@ -6,7 +6,7 @@
         "title": {
           "type": "text",
           "settings": {
-            "text": "<h1>{{ closest.page.title | default: 'Soundtracks' }}</h1>",
+            "text": "<h1>{{ closest.page.title }}</h1>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
