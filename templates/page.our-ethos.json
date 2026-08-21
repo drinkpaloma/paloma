@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "intro": {
@@ -27,8 +36,8 @@
                 "line_height": "normal",
                 "letter_spacing": "0.1em",
                 "case": "uppercase",
-                "text_color": "{{ settings.color_palette.color4 }}",
                 "wrap": "pretty",
+                "text_color": "{{ settings.color_palette.color4 }}",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -100,8 +109,8 @@
                 "line_height": "normal",
                 "letter_spacing": "normal",
                 "case": "none",
-                "text_color": "{{ settings.color_palette.color1 }}",
                 "wrap": "pretty",
+                "text_color": "{{ settings.color_palette.color1 }}",
                 "background": false,
                 "background_color": "#00000026",
                 "corner_radius": 0,
@@ -113,14 +122,21 @@
               "blocks": {}
             }
           },
-          "block_order": ["eyebrow", "headline", "body", "tagline"]
+          "block_order": [
+            "eyebrow",
+            "headline",
+            "body",
+            "tagline"
+          ]
         }
       },
-      "block_order": ["content"],
+      "block_order": [
+        "content"
+      ],
       "name": "t:names.section",
       "settings": {
-        "section_width": "page-width",
         "gap": 24,
+        "section_width": "page-width",
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 64,
         "padding-block-end": 48
@@ -156,13 +172,13 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>HOW IT'S GROWN</p>",
+                    "width": "fit-content",
                     "type_preset": "h6",
                     "font": "var(--font-subheading--family)",
                     "font_size": "0.75rem",
                     "letter_spacing": "0.1em",
                     "case": "uppercase",
-                    "text_color": "{{ settings.color_palette.color4 }}",
-                    "width": "fit-content"
+                    "text_color": "{{ settings.color_palette.color4 }}"
                   },
                   "blocks": {}
                 },
@@ -170,16 +186,19 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Regenerative and organic practices at origin, verified farm by farm rather than by certificate alone.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
-                    "font_size": "1.1rem",
-                    "width": "fit-content",
-                    "max_width": "normal"
+                    "font_size": "1.1rem"
                   },
                   "blocks": {}
                 }
               },
-              "block_order": ["grown_label", "grown_text"]
+              "block_order": [
+                "grown_label",
+                "grown_text"
+              ]
             },
             "paid": {
               "type": "group",
@@ -193,13 +212,13 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>HOW IT'S PAID FOR</p>",
+                    "width": "fit-content",
                     "type_preset": "h6",
                     "font": "var(--font-subheading--family)",
                     "font_size": "0.75rem",
                     "letter_spacing": "0.1em",
                     "case": "uppercase",
-                    "text_color": "{{ settings.color_palette.color4 }}",
-                    "width": "fit-content"
+                    "text_color": "{{ settings.color_palette.color4 }}"
                   },
                   "blocks": {}
                 },
@@ -207,16 +226,19 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Fair wages that honor time. We publish what we pay above market for every lot.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
-                    "font_size": "1.1rem",
-                    "width": "fit-content",
-                    "max_width": "normal"
+                    "font_size": "1.1rem"
                   },
                   "blocks": {}
                 }
               },
-              "block_order": ["paid_label", "paid_text"]
+              "block_order": [
+                "paid_label",
+                "paid_text"
+              ]
             },
             "roasted": {
               "type": "group",
@@ -230,13 +252,13 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>HOW IT'S ROASTED</p>",
+                    "width": "fit-content",
                     "type_preset": "h6",
                     "font": "var(--font-subheading--family)",
                     "font_size": "0.75rem",
                     "letter_spacing": "0.1em",
                     "case": "uppercase",
-                    "text_color": "{{ settings.color_palette.color4 }}",
-                    "width": "fit-content"
+                    "text_color": "{{ settings.color_palette.color4 }}"
                   },
                   "blocks": {}
                 },
@@ -244,34 +266,42 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Small batches, weekly, on a machine we know by ear. Profiles built for clarity over char.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
                     "type_preset": "paragraph",
                     "font": "var(--font-body--family)",
-                    "font_size": "1.1rem",
-                    "width": "fit-content",
-                    "max_width": "normal"
+                    "font_size": "1.1rem"
                   },
                   "blocks": {}
                 }
               },
-              "block_order": ["roasted_label", "roasted_text"]
+              "block_order": [
+                "roasted_label",
+                "roasted_text"
+              ]
             }
           },
-          "block_order": ["grown", "paid", "roasted"]
+          "block_order": [
+            "grown",
+            "paid",
+            "roasted"
+          ]
         }
       },
-      "block_order": ["media", "content"],
       "name": "t:names.media_with_text",
       "settings": {
         "media_position": "left",
         "media_width": "medium",
         "media_height": "auto",
         "section_width": "page-width",
-        "gap": 48,
         "background_color": "{{ settings.color_palette.background }}",
         "padding-block-start": 0,
         "padding-block-end": 64
       }
     }
   },
-  "order": ["intro", "practices"]
+  "order": [
+    "intro",
+    "practices"
+  ]
 }
