@@ -21,19 +21,30 @@
     align-items: baseline;
     gap: 24px;
     padding-block: 20px;
-    border-bottom: 1px solid rgba(28, 26, 23, 0.12);
+    border-bottom: 1px solid #5240312e;
+    transition: background-color 0.15s ease;
+  }
+
+  .track-row:first-child {
+    border-top: 1px solid #5240312e;
+  }
+
+  .track-row:hover {
+    background-color: {{ settings.color_palette.color2 }};
   }
 
   .track-row__index {
     font-family: var(--font-subheading--family, ui-monospace, monospace);
     font-size: 0.8rem;
     color: {{ settings.color_palette.color4 }};
+    transition: color 0.15s ease;
   }
 
   .track-row__title {
     font-family: var(--font-heading--family);
     font-size: 1.75rem;
     color: {{ settings.color_palette.foreground }};
+    transition: color 0.15s ease;
   }
 
   .track-row__subtitle {
@@ -42,6 +53,7 @@
     font-size: 1rem;
     color: {{ settings.color_palette.color4 }};
     justify-self: end;
+    transition: color 0.15s ease;
   }
 
   .track-row__duration {
@@ -50,6 +62,14 @@
     letter-spacing: 0.05em;
     color: {{ settings.color_palette.foreground }};
     justify-self: end;
+    transition: color 0.15s ease;
+  }
+
+  .track-row:hover .track-row__index,
+  .track-row:hover .track-row__title,
+  .track-row:hover .track-row__subtitle,
+  .track-row:hover .track-row__duration {
+    color: {{ settings.color_palette.background }};
   }
 
   @media screen and (max-width: 749px) {
