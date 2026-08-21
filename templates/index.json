@@ -70,6 +70,132 @@
         "padding-block-end": 48
       }
     },
+    "wares_spotlight": {
+      "type": "section",
+      "blocks": {
+        "box": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 60,
+            "border": "solid",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_color": "{{ settings.color_palette.color1 }}",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "swatch_row": {
+              "type": "group",
+              "settings": {
+                "content_direction": "row",
+                "vertical_on_mobile": false,
+                "horizontal_alignment": "space-between",
+                "vertical_alignment": "center",
+                "width": "fill",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 20,
+                "padding-inline-end": 20
+              },
+              "blocks": {
+                "swatch_label": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>ACCENT</p>",
+                    "type_preset": "h6",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
+                    "letter_spacing": "0.08em",
+                    "case": "uppercase",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "width": "fit-content"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["swatch_label"]
+            },
+            "divider_1": {
+              "type": "_divider",
+              "settings": {
+                "thickness": 1,
+                "divider_color": "{{ settings.color_palette.color1 }}",
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "title_row": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Paloma Coffee _ Wares</p>",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1.1rem",
+                "text_color": "{{ settings.color_palette.color1 }}",
+                "width": "fill",
+                "padding-block-start": 16,
+                "padding-block-end": 16,
+                "padding-inline-start": 20,
+                "padding-inline-end": 20
+              },
+              "blocks": {}
+            },
+            "divider_2": {
+              "type": "_divider",
+              "settings": {
+                "thickness": 1,
+                "divider_color": "{{ settings.color_palette.color1 }}",
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "description_row": {
+              "type": "text",
+              "settings": {
+                "text": "<p>For the_ritual of it all. Mugs, filters, a hand grinder and the printed brew cards we keep at the slow bar — the small objects that make a morning feel deliberate rather than rushed. Made in short runs, restocked when we can.</p>",
+                "type_preset": "paragraph",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "1.5",
+                "text_color": "{{ settings.color_palette.color1 }}",
+                "width": "fill",
+                "padding-block-start": 16,
+                "padding-block-end": 20,
+                "padding-inline-start": 20,
+                "padding-inline-end": 20
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["swatch_row", "divider_1", "title_row", "divider_2", "description_row"]
+        }
+      },
+      "block_order": ["box"],
+      "name": "t:names.section",
+      "settings": {
+        "section_width": "page-width",
+        "gap": 0,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 32,
+        "padding-block-end": 0
+      }
+    },
     "ritual_teaser": {
       "type": "media-with-content",
       "blocks": {
@@ -541,5 +667,5 @@
       }
     }
   },
-  "order": ["hero_irjTFL", "ritual_teaser", "product_list_nQbyNK", "ethos_teaser", "slow_bar"]
+  "order": ["hero_irjTFL", "wares_spotlight", "ritual_teaser", "product_list_nQbyNK", "ethos_teaser", "slow_bar"]
 }
