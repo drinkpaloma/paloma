@@ -245,7 +245,8 @@
       ".card,.field,.select__select,input,textarea {border: 1px solid #1c1a172e;}",
       ".card__media {aspect-ratio: 4/5;}",
       ".page-width {max-width: none; padding: 0 var(--page-margin, 24px);}",
-      "@media (min-width: 990px) {header {position: fixed; top: 0; left: 0; width: 210px; height: 100vh; border-right: 1px solid #1c1a172e; background: #f4f1e7; z-index: 20; } #MainContent, footer {margin-left: 210px; }}"
+      "@media (min-width: 990px) {header {position: fixed; top: 0; left: 0; width: 210px; height: 100vh; border-right: 1px solid #1c1a172e; background: #f4f1e7; z-index: 20; } #MainContent, footer {margin-left: 210px; }}",
+      ".wares-swatch-dot {display: inline-block; width: 10px; aspect-ratio: 1; border-radius: 50%; background: #B5BCCD;}"
     ]
   }
 }

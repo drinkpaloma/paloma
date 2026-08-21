@@ -121,9 +121,18 @@
                     "width": "fit-content"
                   },
                   "blocks": {}
+                },
+                "swatch_dot": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p><span class=\"wares-swatch-dot\"></span></p>",
+                    "type_preset": "paragraph",
+                    "width": "fit-content"
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["swatch_label"]
+              "block_order": ["swatch_label", "swatch_dot"]
             },
             "divider_1": {
               "type": "_divider",
