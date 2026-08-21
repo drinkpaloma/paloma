@@ -11,8 +11,8 @@
   "current": {
     "logo": "shopify://shop_images/PALOMA_LOGO1.png",
     "logo_inverse": "shopify://shop_images/PALOMA_LOGO2.png",
-    "logo_height": 21,
-    "logo_height_mobile": 28,
+    "logo_height": 26,
+    "logo_height_mobile": 30,
     "favicon": "shopify://shop_images/palomaFAVICON.png",
     "page_text_color": "{{ settings.color_palette.foreground }}",
     "type_body_font": "geist_n4",
@@ -135,11 +135,11 @@
     },
     "color_palette": {
       "background": "#F4F1E7",
-      "foreground": "#1C1A17",
+      "foreground": "#524031",
       "color1": "#C24F2E",
       "color2": "#B5BCCD",
       "color3": "#9F8B5D",
-      "color4": "#6E6A61",
+      "color4": "#7f6934",
       "color5": "{{ settings.color_palette.color3 }}"
     }
   },
@@ -239,15 +239,16 @@
   "platform_customizations": {
     "custom_css": [
       ".footer-block__heading,.caption,.price,.form__label,.facets__label,.summary__title,.button,.product-form__submit {font-family: var(--font-subheading--family, ui-monospace, monospace); text-transform: uppercase; letter-spacing: 0.14em; font-size: 9.5px;}",
-      ".button,.product-form__submit {background: 0 0; color: #1c1a17; border: 1px solid #1c1a17; min-height: 44px;}",
-      ".button:hover,.product-form__submit:hover {background: #1c1a17; color: #f4f1e7;}",
+      ".button,.product-form__submit {background: 0 0; color: #524031; border: 1px solid #524031; min-height: 44px;}",
+      ".button:hover,.product-form__submit:hover {background: #524031; color: #f4f1e7;}",
       ".card,.field,.select__select,input,textarea,.quantity,.button,.cart-drawer {border-radius: 0; box-shadow: none;}",
-      ".card,.field,.select__select,input,textarea {border: 1px solid #1c1a172e;}",
+      ".card,.field,.select__select,input,textarea {border: 1px solid #5240312e;}",
       ".card__media {aspect-ratio: 4/5;}",
       ".page-width {max-width: none; padding: 0 var(--page-margin, 24px);}",
-      ".header-section {position: fixed !important; top: 0; left: 0; width: 160px; height: 100vh; overflow-y: auto; border-right: 1px solid #1c1a172e; background: #f4f1e7; z-index: 20; } #MainContent, footer {margin-left: 160px; }",
+      ".header-section {position: fixed !important; top: 0; left: 0; width: 160px; height: 100vh; overflow-y: auto; border-right: 1px solid #5240312e; background: #f4f1e7; z-index: 20; } #MainContent, footer {margin-left: 160px; }",
       "@media (min-width: 990px) {.header-section {width: 210px;} #MainContent, footer {margin-left: 210px; }}",
-      "#MainContent > div {border-bottom: 1px solid #1c1a172e;}"
+      "#MainContent > div {border-bottom: 1px solid #5240312e;}",
+      "html {outline: 1px solid #C24F2E; outline-offset: -1px;}"
     ]
   }
 }
