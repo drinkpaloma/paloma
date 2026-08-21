@@ -1,0 +1,28 @@
+
+
+{% liquid
+  assign product = closest.product
+  assign roast_process = product.metafields.custom.roast_process.value
+%}
+
+{% if roast_process != blank %}
+  <p class="roast-process" {{ block.shopify_attributes }}>{{ roast_process }}</p>
+{% endif %}
+
+{% stylesheet %}
+  .roast-process {
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6e6a61;
+    margin: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Roast & process",
+  "tag": null
+}
+{% endschema %}

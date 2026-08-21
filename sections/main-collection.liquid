@@ -92,6 +92,53 @@
   </results-list>
 </collection-component>
 
+{% stylesheet %}
+  /* Numbered "(01)" badge on each card, top-left — mirrors the shop-page
+     mockup. Uses a CSS counter scoped to this grid so it always reads
+     01, 02, 03... for whatever's currently rendered (a page of results,
+     an infinite-scroll batch), rather than an absolute product index. */
+  .product-grid__item {
+    counter-increment: card-index;
+    position: relative;
+  }
+
+  .product-grid-view {
+    counter-reset: card-index;
+  }
+
+  .product-grid__item::before {
+    content: '(' counter(card-index, decimal-leading-zero) ')';
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #f4f1e7;
+    pointer-events: none;
+  }
+
+  /* Light typographic pass on the native filter bar — mono, uppercase,
+     letter-spaced, underlined active state — to read like the mockup's
+     tab row. Structural filtering behavior is untouched. */
+  .facets--horizontal .facets__form,
+  .facets--horizontal .facets-horizontal-remove,
+  .facets--horizontal .sort-select {
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .facets--horizontal [aria-current='true'],
+  .facets--horizontal .facets-horizontal-remove--active {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: {{ settings.color_palette.color1 }};
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.collection_container",

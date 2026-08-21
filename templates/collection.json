@@ -21,7 +21,7 @@
             "alignment": "left",
             "type_preset": "h2",
             "font": "var(--font-heading--family)",
-            "font_size": "3rem",
+            "font_size": "3.5rem",
             "line_height": "normal",
             "letter_spacing": "normal",
             "case": "none",
@@ -30,6 +30,32 @@
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_subcount": {
+          "type": "text",
+          "name": "t:names.text",
+          "settings": {
+            "text": "<p>{{ closest.collection.all_products_count }} offerings · roasted to order</p>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h6",
+            "font": "var(--font-subheading--family)",
+            "font_size": "0.8rem",
+            "line_height": "normal",
+            "letter_spacing": "0.05em",
+            "case": "uppercase",
+            "text_color": "{{ settings.color_palette.color4 }}",
+            "wrap": "pretty",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 8,
             "padding-block-end": 0,
             "padding-inline-start": 0,
             "padding-inline-end": 0
@@ -52,11 +78,12 @@
       },
       "block_order": [
         "text_tqQTNE",
+        "text_subcount",
         "divider_hxzt8A"
       ],
       "name": "t:names.heading",
       "settings": {
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 80,
         "section_width": "page-width",
@@ -199,6 +226,11 @@
                   },
                   "blocks": {}
                 },
+                "roast_process": {
+                  "type": "_roast-process",
+                  "settings": {},
+                  "blocks": {}
+                },
                 "flavor_notes": {
                   "type": "_flavor-notes",
                   "settings": {},
@@ -223,6 +255,7 @@
               "block_order": [
                 "product_title_hgAHWC",
                 "price",
+                "roast_process",
                 "flavor_notes",
                 "swatches"
               ]
