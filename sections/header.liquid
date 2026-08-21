@@ -114,6 +114,11 @@
     render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: section.settings.actions_display_style, section: section
   endcapture
 
+  capture rail_actions
+    render 'search', style: search_style, display_style: 'text'
+    render 'header-actions', customer_account_menu: section.settings.customer_account_menu, display_style: 'text', section: section
+  endcapture
+
   if shop.customer_accounts_enabled
     assign search_class = 'search-action--hidden-on-drawer'
   endif
@@ -479,9 +484,9 @@
 
   <div class="header__rail-footer">
     <p class="header__rail-tagline">peace here_and now</p>
-    <a href="{{ routes.cart_url }}" class="header__rail-cart">
-      CART{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
-    </a>
+    <div class="header__rail-actions">
+      {{ rail_actions }}
+    </div>
   </div>
 </header-component>
 
@@ -1205,145 +1210,181 @@
     font-size: var(--menu-localization-font-size);
   }
   /* ================================
-     * Left index-rail nav (desktop)
+     * Left index-rail nav (all breakpoints)
      * The Custom CSS block owns the outer <header> rail's fixed position,
-     * width, background and border. Everything below is what Custom CSS
-     * can't reach: #header-component's own inset + vertical layout, a plain
-     * static nav (see snippets/rail-nav.liquid) standing in for Vessel's
-     * header-menu component — whose shadow-DOM overflow-list collapses items
-     * into a "MORE" button once they don't fit a horizontal bar, which a
-     * 210px vertical rail never will — and the rail footer (tagline + cart).
+     * width, background and border (narrower under 990px, see settings_data
+     * custom CSS). Everything below is what Custom CSS can't reach:
+     * #header-component's own inset + vertical layout, a plain static nav
+     * (see snippets/rail-nav.liquid) standing in for Vessel's header-menu
+     * component — whose shadow-DOM overflow-list collapses items into a
+     * "MORE" button once they don't fit a horizontal bar, which a vertical
+     * rail never will — and the rail footer (tagline + cart/search/account).
+     * Applied unconditionally (not gated to desktop) so mobile gets the
+     * same fixed rail instead of Vessel's drawer/hamburger header. Several
+     * rules carry !important because Vessel's own [data-menu-style='drawer']
+     * mobile rules are equally or more specific and would otherwise win.
      * ================================ */
-  .header__rail-nav,
-  .header__rail-footer {
+  #header-component {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding: 26px 20px;
+    box-sizing: border-box;
+  }
+
+  /* #header-component now owns the rail's horizontal inset; strip the
+     page-width/divider padding the row/columns add for the normal
+     horizontal header, so the nav and the rail footer share one inset. */
+  #header-component .header__row--top,
+  #header-component .header__columns {
+    padding-inline: 0 !important;
+    margin-inline: 0 !important;
+  }
+
+  #header-component .header__row--bottom {
     display: none;
   }
 
-  @media screen and (min-width: 990px) {
-    #header-component {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      width: 100%;
-      height: 100%;
-      padding: 26px 20px;
-      box-sizing: border-box;
-    }
+  #header-component .header__columns {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start;
+    grid-template-columns: none;
+    gap: 38px;
+  }
 
-    /* #header-component now owns the rail's horizontal inset; strip the
-       page-width/divider padding the row/columns add for the normal
-       horizontal header, so the nav and the rail footer share one inset. */
-    #header-component .header__row--top,
-    #header-component .header__columns {
-      padding-inline: 0 !important;
-      margin-inline: 0 !important;
-    }
+  #header-component .header__column {
+    display: flex !important;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 
-    #header-component .header__row--bottom {
-      display: none;
-    }
+  /* Logo (default: center column) sits above the menu (default: left column) */
+  #header-component .header__column--center {
+    order: -1;
+  }
 
-    #header-component .header__columns {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      grid-template-columns: none;
-      gap: 38px;
-    }
+  #header-component .header__column--left {
+    order: 0;
+  }
 
-    #header-component .header__column {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 20px;
-    }
+  /* Icon-based cart/search/account actions are replaced by the text trio below */
+  #header-component .header__column--right {
+    display: none !important;
+  }
 
-    /* Logo (default: center column) sits above the menu (default: left column) */
-    #header-component .header__column--center {
-      order: -1;
-    }
+  #header-component .header__navigation-bar-row {
+    display: none;
+  }
 
-    #header-component .header__column--left {
-      order: 0;
-    }
+  /* Vessel's built-in menu component never shows here — see comment above */
+  #header-component .header-menu {
+    display: none !important;
+  }
 
-    /* Icon-based cart/search/account actions are replaced by the text CART link below */
-    #header-component .header__column--right {
-      display: none !important;
-    }
+  #header-component .header-logo {
+    justify-content: flex-start;
+  }
 
-    #header-component .header__navigation-bar-row {
-      display: none;
-    }
+  #header-component .header__rail-nav {
+    display: block;
+  }
 
-    /* Vessel's built-in menu component never shows here — see comment above */
-    #header-component .header-menu {
-      display: none !important;
-    }
+  #header-component .header__rail-nav-list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 11px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-    #header-component .header-logo {
-      justify-content: flex-start;
-    }
+  #header-component .header__rail-nav-link {
+    display: inline-flex;
+    font-family: ui-monospace, 'antarctican-mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6e6a61;
+    text-decoration: none;
+  }
 
-    #header-component .header__rail-nav {
-      display: block;
-    }
+  #header-component .header__rail-nav-link:hover,
+  #header-component .header__rail-nav-link:focus,
+  #header-component .header__rail-nav-link[aria-current='page'] {
+    color: #1c1a17;
+  }
 
-    #header-component .header__rail-nav-list {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 11px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
+  #header-component .header__rail-nav-index {
+    margin-right: 6px;
+    opacity: 0.6;
+  }
 
-    #header-component .header__rail-nav-link {
-      display: inline-flex;
-      font-family: ui-monospace, 'antarctican-mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #6e6a61;
-      text-decoration: none;
-    }
+  #header-component .header__rail-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 
-    #header-component .header__rail-nav-link:hover,
-    #header-component .header__rail-nav-link:focus,
-    #header-component .header__rail-nav-link[aria-current='page'] {
-      color: #1c1a17;
-    }
+  #header-component .header__rail-tagline {
+    font-family: 'CactusClassicalSerif-Regular', Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    color: #6e6a61;
+    letter-spacing: normal;
+    margin: 0;
+  }
 
-    #header-component .header__rail-nav-index {
-      margin-right: 6px;
-      opacity: 0.6;
-    }
+  /* Cart / Search / Account trio, always pinned at the bottom of the rail.
+     search-button and header-actions are collapsed with display:contents so
+     their inner buttons become direct flex items here — that's what lets
+     `order` place them as CART, SEARCH, ACCOUNT regardless of each
+     component's own internal markup order. */
+  #header-component .header__rail-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 
-    #header-component .header__rail-footer {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
-    }
+  #header-component .header__rail-actions search-button,
+  #header-component .header__rail-actions header-actions {
+    display: contents;
+  }
 
-    #header-component .header__rail-tagline {
-      font-family: 'CactusClassicalSerif-Regular', Georgia, serif;
-      font-style: italic;
-      font-size: 13px;
-      color: #6e6a61;
-      letter-spacing: normal;
-      margin: 0;
-    }
+  #header-component .header__rail-actions .search-action {
+    order: 2;
+  }
 
-    #header-component .header__rail-cart {
-      font-family: ui-monospace, 'antarctican-mono', monospace;
-      font-size: 9.5px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #1c1a17;
-      text-decoration: none;
-    }
+  #header-component .header__rail-actions .account-button {
+    order: 3;
+  }
+
+  #header-component .header__rail-actions .header-actions__action,
+  #header-component .header__rail-actions .header-actions__text-style {
+    font-family: ui-monospace, 'antarctican-mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1c1a17;
+    text-decoration: none;
+    min-height: 0;
+  }
+
+  /* Force text-only display for these three regardless of viewport --
+     Vessel's mobile:hidden / desktop:hidden utilities are tied to its own
+     750px breakpoint, not the rail's, so they're overridden here. */
+  #header-component .header__rail-actions .svg-wrapper {
+    display: none !important;
+  }
+
+  #header-component .header__rail-actions .mobile\:hidden {
+    display: inline-flex !important;
   }
 {% endstylesheet %}
 
