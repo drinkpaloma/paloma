@@ -248,7 +248,8 @@
       ".header-section {position: fixed !important; top: 0; left: 0; width: 160px; height: 100vh; overflow-y: auto; border-right: 1px solid #5240312e; background: #f4f1e7; z-index: 20; } #MainContent, footer {margin-left: 160px; }",
       "@media (min-width: 990px) {.header-section {width: 210px;} #MainContent, footer {margin-left: 210px; }}",
       "#MainContent > div {border-bottom: 1px solid #5240312e;}",
-      "html {outline: 1px solid #C24F2E; outline-offset: -1px;}"
+      "html {outline: 1px solid #C24F2E; outline-offset: -1px;}",
+      ".card:hover {border-color: #C24F2E;}"
     ]
   }
 }
