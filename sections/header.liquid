@@ -86,6 +86,12 @@
       assign rail_menu_list = block.settings.menu
     endif
   endfor
+  # The header-menu block is static (no block_order entry), so section.blocks
+  # never actually contains it -- the loop above silently finds nothing.
+  # Fall back to the linklist directly so the rail nav always resolves.
+  if rail_menu_list == null
+    assign rail_menu_list = linklists['main-menu']
+  endif
 
   capture logo
     content_for 'block', type: '_header-logo', id: 'header-logo'
