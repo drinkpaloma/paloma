@@ -84,7 +84,7 @@
                 "max_width": "wide",
                 "alignment": "left",
                 "type_preset": "h1",
-                "font": "var(--font-heading--family)",
+                "font": "'CactusClassicalSerif-Regular', Georgia, serif",
                 "font_size": "4.5rem",
                 "line_height": "1.05",
                 "letter_spacing": "normal",
