@@ -1,0 +1,85 @@
+
+
+{% doc %}
+  Small bordered text tags for a product card -- Single origin / Blend /
+  Decaf / Subscribe -- driven by the product's own Shopify tags rather
+  than a separate field, so merchants manage them the same place they
+  already manage tags. Subscribe links to the Ritual page.
+{% enddoc %}
+
+{% liquid
+  assign product = closest.product
+  assign show_single_origin = false
+  assign show_blend = false
+  assign show_decaf = false
+  assign show_subscribe = false
+  for tag in product.tags
+    assign tag_slug = tag | handleize
+    if tag_slug == 'single-origin'
+      assign show_single_origin = true
+    elsif tag_slug == 'blend'
+      assign show_blend = true
+    elsif tag_slug == 'decaf'
+      assign show_decaf = true
+    elsif tag_slug == 'subscribe'
+      assign show_subscribe = true
+    endif
+  endfor
+%}
+
+{% if show_single_origin or show_blend or show_decaf or show_subscribe %}
+  <div class="product-tags" {{ block.shopify_attributes }}>
+    {% if show_single_origin %}
+      <span class="product-tags__tag">Single origin</span>
+    {% endif %}
+    {% if show_blend %}
+      <span class="product-tags__tag">Blend</span>
+    {% endif %}
+    {% if show_decaf %}
+      <span class="product-tags__tag">Decaf</span>
+    {% endif %}
+    {% if show_subscribe %}
+      <a href="/pages/theritual" class="product-tags__tag product-tags__tag--link">Subscribe</a>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .product-tags__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 8px;
+    border: 1px solid {{ settings.color_palette.color4 }};
+    font-family: var(--font-subheading--family, ui-monospace, monospace);
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: {{ settings.color_palette.color4 }};
+    text-decoration: none;
+  }
+
+  .product-tags__tag--link {
+    border-color: {{ settings.color_palette.color1 }};
+    color: {{ settings.color_palette.color1 }};
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  .product-tags__tag--link:hover {
+    background: {{ settings.color_palette.color1 }};
+    color: {{ settings.color_palette.background }};
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product tags",
+  "tag": null
+}
+{% endschema %}
