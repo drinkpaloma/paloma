@@ -4,12 +4,11 @@
   Color dot in its own bordered, square cell (a faint left rule completes
   the square against the wares_spotlight box's own top/right/bottom
   borders). The cell is a square (aspect-ratio: 1, matched to the row's own
-  stretched height), and the dot fills its content box at 100% -- with
-  padding set in percent, the dot scales as a fixed proportion of the cell
-  rather than a fixed pixel size. A plain <span class="..."> can't be
-  entered through a richtext "text" setting (Shopify's sanitizer strips
-  class/style attributes there), so this renders as raw block markup
-  instead.
+  stretched height), and the dot is a stroke-only circle sized as a
+  percentage of the cell, not a fixed pixel value. A plain <span
+  class="..."> can't be entered through a richtext "text" setting
+  (Shopify's sanitizer strips class/style attributes there), so this
+  renders as raw block markup instead.
 {% enddoc %}
 
 <span class="wares-swatch-cell" {{ block.shopify_attributes }}>
