@@ -75,7 +75,272 @@
     "configurator": {
       "type": "ritual-configurator",
       "settings": {}
+    },
+    "how_it_works": {
+      "type": "section",
+      "blocks": {
+        "columns": {
+          "type": "group",
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-start",
+            "gap": 48,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "col_1": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "eyebrow": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>01</p>",
+                    "width": "fit-content",
+                    "type_preset": "h6",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
+                    "letter_spacing": "0.08em",
+                    "case": "uppercase",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Choose your coffee</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "type_preset": "h5",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1.15rem",
+                    "case": "none",
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "body": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Pick a roast, a bag count, a rhythm. Change any of it whenever you like.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.95rem",
+                    "line_height": "1.5",
+                    "text_color": "{{ settings.color_palette.color4 }}",
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["eyebrow", "heading", "body"]
+            },
+            "col_2": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "eyebrow": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>02</p>",
+                    "width": "fit-content",
+                    "type_preset": "h6",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
+                    "letter_spacing": "0.08em",
+                    "case": "uppercase",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>We roast + ship</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "type_preset": "h5",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1.15rem",
+                    "case": "none",
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "body": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Every order roasted the morning it ships, so it lands on your counter days off the drum.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.95rem",
+                    "line_height": "1.5",
+                    "text_color": "{{ settings.color_palette.color4 }}",
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["eyebrow", "heading", "body"]
+            },
+            "col_3": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "flex-start",
+                "gap": 12,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "border": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "eyebrow": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>03</p>",
+                    "width": "fit-content",
+                    "type_preset": "h6",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "0.75rem",
+                    "letter_spacing": "0.08em",
+                    "case": "uppercase",
+                    "text_color": "{{ settings.color_palette.color1 }}",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "heading": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Arrives on schedule</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "type_preset": "h5",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1.15rem",
+                    "case": "none",
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "body": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Pause, skip, or cancel anytime — no calls, no fees, just your account.</p>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "type_preset": "paragraph",
+                    "font": "var(--font-body--family)",
+                    "font_size": "0.95rem",
+                    "line_height": "1.5",
+                    "text_color": "{{ settings.color_palette.color4 }}",
+                    "padding-block-start": 8,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["eyebrow", "heading", "body"]
+            }
+          },
+          "block_order": ["col_1", "col_2", "col_3"]
+        }
+      },
+      "block_order": ["columns"],
+      "name": "t:names.section",
+      "settings": {
+        "section_width": "page-width",
+        "background_color": "{{ settings.color_palette.background }}",
+        "border": "none",
+        "padding-block-start": 64,
+        "padding-block-end": 64
+      }
     }
   },
-  "order": ["hero", "configurator"]
+  "order": ["hero", "configurator", "how_it_works"]
 }
