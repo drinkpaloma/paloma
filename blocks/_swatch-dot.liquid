@@ -24,17 +24,19 @@
     align-self: stretch;
     aspect-ratio: 1;
     box-sizing: border-box;
-    padding: 10%;
+    padding: 15%;
     margin-block: -16px;
     border-left: 1px solid {{ settings.color_palette.color1 }};
   }
 
   .wares-swatch-dot {
     display: inline-block;
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: {{ settings.color_palette.color1 }};
+    border: 1.5px solid {{ settings.color_palette.color1 }};
+    background: transparent;
   }
 {% endstylesheet %}
 
