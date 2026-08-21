@@ -80,12 +80,20 @@
     endif
   endif
 
+  assign rail_menu_list = null
+  for block in section.blocks
+    if block.type == '_header-menu'
+      assign rail_menu_list = block.settings.menu
+    endif
+  endfor
+
   capture logo
     content_for 'block', type: '_header-logo', id: 'header-logo'
   endcapture
 
   capture menu
     content_for 'block', type: '_header-menu', id: 'header-menu'
+    render 'rail-nav', menu: rail_menu_list
   endcapture
 
   capture drawer_menu
@@ -475,35 +483,6 @@
   src="{{ 'header.js' | asset_url }}"
   type="module"
 ></script>
-
-{% comment %}
-  The header menu's overflow-list (assets/overflow-list.js) measures available
-  width and moves items it can't fit into a "MORE" button/shadow-DOM popup —
-  built for a horizontal bar, not a 210px vertical rail. Custom CSS can't reach
-  into its shadow root to stop that, so it's disabled outright at desktop widths
-  via its own supported `disabled` attribute, which fully restores the default
-  slot (all items, no MORE button). Below 990px the mobile drawer menu is used
-  instead, so this never touches it.
-{% endcomment %}
-<script>
-  (function () {
-    var mediaQuery = window.matchMedia('(min-width: 990px)');
-
-    function syncMenuOverflow() {
-      var overflowMenu = document.querySelector('#header-component .header-menu .overflow-menu');
-      if (!overflowMenu) return;
-
-      if (mediaQuery.matches) {
-        overflowMenu.setAttribute('disabled', 'true');
-      } else if (overflowMenu.getAttribute('disabled') === 'true') {
-        overflowMenu.removeAttribute('disabled');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', syncMenuOverflow);
-    mediaQuery.addEventListener('change', syncMenuOverflow);
-  })();
-</script>
 
 {% stylesheet %}
   body {
@@ -1222,12 +1201,18 @@
   /* ================================
      * Left index-rail nav (desktop)
      * The Custom CSS block owns the outer <header> rail's fixed position,
-     * width, background, border and #MainContent/footer offset. These rules
-     * only handle what Custom CSS can't reach: laying out #header-component's
-     * own rows/columns as a vertical stack, hiding the icon-based actions
-     * column in favor of the text cart link below, and styling the numbered
-     * menu items + rail footer.
+     * width, background and border. Everything below is what Custom CSS
+     * can't reach: #header-component's own inset + vertical layout, a plain
+     * static nav (see snippets/rail-nav.liquid) standing in for Vessel's
+     * header-menu component — whose shadow-DOM overflow-list collapses items
+     * into a "MORE" button once they don't fit a horizontal bar, which a
+     * 210px vertical rail never will — and the rail footer (tagline + cart).
      * ================================ */
+  .header__rail-nav,
+  .header__rail-footer {
+    display: none;
+  }
+
   @media screen and (min-width: 990px) {
     #header-component {
       display: flex;
@@ -1235,6 +1220,17 @@
       justify-content: space-between;
       width: 100%;
       height: 100%;
+      padding: 26px 20px;
+      box-sizing: border-box;
+    }
+
+    /* #header-component now owns the rail's horizontal inset; strip the
+       page-width/divider padding the row/columns add for the normal
+       horizontal header, so the nav and the rail footer share one inset. */
+    #header-component .header__row--top,
+    #header-component .header__columns {
+      padding-inline: 0 !important;
+      margin-inline: 0 !important;
     }
 
     #header-component .header__row--bottom {
@@ -1267,46 +1263,55 @@
 
     /* Icon-based cart/search/account actions are replaced by the text CART link below */
     #header-component .header__column--right {
-      display: none;
+      display: none !important;
     }
 
     #header-component .header__navigation-bar-row {
       display: none;
     }
 
-    #header-component .header-menu,
-    #header-component .menu-list {
-      display: flex;
+    /* Vessel's built-in menu component never shows here — see comment above */
+    #header-component .header-menu {
+      display: none !important;
     }
 
-    #header-component .menu-list__list {
+    #header-component .header-logo {
+      justify-content: flex-start;
+    }
+
+    #header-component .header__rail-nav {
+      display: block;
+    }
+
+    #header-component .header__rail-nav-list {
+      display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 11px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
     }
 
-    #header-component .menu-list__link-index {
-      display: inline;
-      font-family: ui-monospace, 'antarctican-mono', monospace;
-      margin-right: 6px;
-      opacity: 0.6;
-    }
-
-    #header-component .menu-list__link {
+    #header-component .header__rail-nav-link {
+      display: inline-flex;
       font-family: ui-monospace, 'antarctican-mono', monospace;
       font-size: 9.5px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: #6e6a61;
+      text-decoration: none;
     }
 
-    #header-component .menu-list__link:hover,
-    #header-component .menu-list__link:focus {
+    #header-component .header__rail-nav-link:hover,
+    #header-component .header__rail-nav-link:focus,
+    #header-component .header__rail-nav-link[aria-current='page'] {
       color: #1c1a17;
     }
 
-    #header-component .header-logo {
-      justify-content: flex-start;
+    #header-component .header__rail-nav-index {
+      margin-right: 6px;
+      opacity: 0.6;
     }
 
     #header-component .header__rail-footer {
@@ -1332,12 +1337,6 @@
       text-transform: uppercase;
       color: #1c1a17;
       text-decoration: none;
-    }
-  }
-
-  @media screen and (max-width: 989px) {
-    .header__rail-footer {
-      display: none;
     }
   }
 {% endstylesheet %}

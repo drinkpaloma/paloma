@@ -1,0 +1,35 @@
+{% doc %}
+  Plain, non-collapsing vertical link list for the desktop index rail.
+
+  Vessel's normal header-menu component moves items into a shadow-DOM "MORE"
+  button once they don't fit the available width — built for a horizontal bar,
+  not a 210px vertical rail, and CSS can't reach into its shadow root to stop
+  that. This bypasses it entirely: a plain server-rendered list, so every item
+  always shows, in order, with no JS collapse logic to fight.
+
+  Hidden below 990px in header.liquid's stylesheet; the normal drawer menu
+  handles mobile.
+
+  @param {object} [menu] - Link list object, e.g. `block.settings.menu`.
+{% enddoc %}
+
+{% if menu %}
+  <nav class="header__rail-nav" aria-label="{{ 'accessibility.header_navigation_label' | t }}">
+    <ul class="header__rail-nav-list list-unstyled" role="list">
+      {% for link in menu.links %}
+        <li class="header__rail-nav-item">
+          <a
+            href="{{ link.url }}"
+            class="header__rail-nav-link"
+            {% if link.current %}
+              aria-current="page"
+            {% endif %}
+          >
+            <span class="header__rail-nav-index" aria-hidden="true">{{ forloop.index | prepend: '00' | slice: -2, 2 }}</span>
+            <span class="header__rail-nav-label">{{ link.title }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}
