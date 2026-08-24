@@ -76,9 +76,9 @@
     "drawer_text_color": "{{ settings.color_palette.foreground }}",
     "drawer_border_color": "{{ settings.color_palette.color1 }}",
     "icon_stroke": "thin",
-    "palette_input_background": "{{ settings.color_palette.color1 }}",
-    "palette_input_text": "{{ settings.color_palette.color4 }}",
-    "palette_input_border": "{{ settings.color_palette.color1 }}",
+    "palette_input_background": "{{ settings.color_palette.background }}",
+    "palette_input_text": "{{ settings.color_palette.foreground }}",
+    "palette_input_border": "#5240312e",
     "input_border_width": 1,
     "inputs_border_radius": 0,
     "popover_background_color": "{{ settings.color_palette.background }}",
@@ -202,9 +202,9 @@
       "drawer_text_color": "{{ settings.color_palette.foreground }}",
       "drawer_border_color": "{{ settings.color_palette.color1 }}",
       "icon_stroke": "thin",
-      "palette_input_background": "{{ settings.color_palette.color1 }}",
+      "palette_input_background": "{{ settings.color_palette.background }}",
       "palette_input_text": "{{ settings.color_palette.foreground }}",
-      "palette_input_border": "rgba(0,0,0,0)",
+      "palette_input_border": "#5240312e",
       "input_border_width": 1,
       "inputs_border_radius": 0,
       "popover_background_color": "{{ settings.color_palette.background }}",
@@ -249,7 +249,9 @@
       "@media (min-width: 990px) {.header-section {width: 210px;} #MainContent, footer {margin-left: 210px; }}",
       "#MainContent > div {border-bottom: 1px solid #5240312e;}",
       "html {outline: 1px solid #C24F2E; outline-offset: -1px;}",
-      ".card:hover {border-color: #C24F2E;}"
+      ".card:hover {border-color: #C24F2E;}",
+      ".product-card__content {border: 1px solid transparent;}",
+      ".product-card:hover .product-card__content {border-color: #C24F2E;}"
     ]
   }
 }

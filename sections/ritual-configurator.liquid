@@ -54,7 +54,11 @@
   </div>
 
   <div class="ritual-configurator__media">
-    {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw' }}
+    {% if section.settings.image %}
+      {{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', sizes: '(min-width: 750px) 50vw, 100vw' }}
+    {% else %}
+      {{ 'lifestyle-1' | placeholder_svg_tag: 'ritual-configurator__placeholder' }}
+    {% endif %}
   </div>
 </div>
 
@@ -76,7 +80,7 @@
   .ritual-configurator {
     display: grid;
     grid-template-columns: 1fr;
-    background: {{ settings.color_palette.background }};
+    background: #F4F1E7;
 
     @media screen and (min-width: 750px) {
       grid-template-columns: 1fr 1fr;
@@ -95,7 +99,7 @@
     font-size: 0.75rem;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: {{ settings.color_palette.color4 }};
+    color: #7f6934;
     margin: 0 0 12px;
   }
 
@@ -111,9 +115,9 @@
     display: inline-flex;
     align-items: center;
     padding: 14px 20px;
-    border: 2px solid {{ settings.color_palette.color2 }};
+    border: 2px solid #B5BCCD;
     background: transparent;
-    color: {{ settings.color_palette.foreground }};
+    color: #524031;
     font-family: inherit;
     font-size: 1rem;
     cursor: pointer;
@@ -121,19 +125,19 @@
   }
 
   .ritual-configurator__chip:hover {
-    border-color: {{ settings.color_palette.color1 }};
+    border-color: #C24F2E;
   }
 
   .ritual-configurator__chip:focus-visible {
-    outline: 2px solid {{ settings.color_palette.color1 }};
+    outline: 2px solid #C24F2E;
     outline-offset: 2px;
   }
 
   /* Selection is never color-only: border color, a faint fill, and a
      checkmark all change together. */
   .ritual-configurator__chip[aria-pressed='true'] {
-    border-color: {{ settings.color_palette.foreground }};
-    background: {{ settings.color_palette.color2 }}4d;
+    border-color: #524031;
+    background: #B5BCCD4d;
   }
 
   .ritual-configurator__chip[aria-pressed='true']::after {
@@ -148,7 +152,7 @@
     justify-content: space-between;
     gap: 16px;
     padding-top: 16px;
-    border-top: 1px solid {{ settings.color_palette.color2 }};
+    border-top: 1px solid #B5BCCD;
   }
 
   .ritual-configurator__price {
@@ -166,12 +170,12 @@
     font-family: var(--font-heading--family);
     font-style: italic;
     font-size: 1rem;
-    color: {{ settings.color_palette.color4 }};
+    color: #7f6934;
   }
 
   .ritual-configurator__subscribe {
-    background: {{ settings.color_palette.foreground }};
-    color: {{ settings.color_palette.background }};
+    background: #524031;
+    color: #F4F1E7;
     border: none;
     padding: 16px 28px;
     font-family: var(--font-subheading--family, ui-monospace, monospace);
@@ -187,11 +191,16 @@
     font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    color: {{ settings.color_palette.color4 }};
+    color: #7f6934;
     margin: 0;
   }
 
-  .ritual-configurator__media img {
+  .ritual-configurator__media {
+    min-height: 320px;
+  }
+
+  .ritual-configurator__media img,
+  .ritual-configurator__media svg {
     width: 100%;
     height: 100%;
     object-fit: cover;
