@@ -1,0 +1,109 @@
+{% doc %}
+  Shop page header: large "The beans" heading, a live offerings count, and
+  a simple horizontal tag nav (All / Single origin / Blends / Decaf /
+  Subscribe) that replaces the vertical filter sidebar -- built on
+  Shopify's native /collections/{handle}/{tag} URLs, so no filter app or
+  extra state is required. Subscribe isn't a filter; it's a promotional
+  link out to the Ritual page, matching the product-card tag treatment.
+{% enddoc %}
+
+{% liquid
+  assign collection = closest.collection
+  assign base_url = collection.url
+  assign is_all = true
+  if collection.current_tags.size > 0
+    assign is_all = false
+  endif
+%}
+
+<div class="shop-header page-width" {{ section.shopify_attributes }}>
+  <h1 class="shop-header__heading">The beans</h1>
+  <div class="shop-header__row">
+    <p class="shop-header__count">{{ collection.products_count }} offerings &middot; roasted to order</p>
+    <nav class="shop-header__tags" aria-label="Filter by type">
+      <a href="{{ base_url }}" class="shop-header__tag{% if is_all %} shop-header__tag--active{% endif %}"{% if is_all %} aria-current="page"{% endif %}>All</a>
+      <a href="{{ base_url }}/single-origin" class="shop-header__tag{% if collection.current_tags contains 'single-origin' %} shop-header__tag--active{% endif %}"{% if collection.current_tags contains 'single-origin' %} aria-current="page"{% endif %}>Single origin</a>
+      <a href="{{ base_url }}/blend" class="shop-header__tag{% if collection.current_tags contains 'blend' %} shop-header__tag--active{% endif %}"{% if collection.current_tags contains 'blend' %} aria-current="page"{% endif %}>Blends</a>
+      <a href="{{ base_url }}/decaf" class="shop-header__tag{% if collection.current_tags contains 'decaf' %} shop-header__tag--active{% endif %}"{% if collection.current_tags contains 'decaf' %} aria-current="page"{% endif %}>Decaf</a>
+      <a href="/pages/theritual" class="shop-header__tag">Subscribe</a>
+    </nav>
+  </div>
+</div>
+
+{% stylesheet %}
+  .shop-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-block: 48px 32px;
+  }
+
+  .shop-header__heading {
+    font-family: 'CactusClassicalSerif-Regular', Georgia, serif;
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    line-height: 1.05;
+    color: #524031;
+    margin: 0;
+  }
+
+  .shop-header__row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #5240312e;
+  }
+
+  .shop-header__count {
+    font-family: ui-monospace, 'antarctican-mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7f6934;
+    margin: 0;
+  }
+
+  .shop-header__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .shop-header__tag {
+    font-family: ui-monospace, 'antarctican-mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #524031;
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+
+  .shop-header__tag:hover {
+    color: #C24F2E;
+  }
+
+  .shop-header__tag--active {
+    color: #C24F2E;
+    border-bottom-color: #C24F2E;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop header",
+  "tag": "section",
+  "enabled_on": {
+    "templates": ["collection"]
+  },
+  "settings": [],
+  "presets": [
+    {
+      "name": "Shop header"
+    }
+  ]
+}
+{% endschema %}

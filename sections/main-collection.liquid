@@ -47,13 +47,6 @@
     <div
       class="collection-wrapper grid gap-style{% if section.settings.product_grid_width == 'full-width' %} collection-wrapper--grid-full-width{% endif %}"
     >
-      {% content_for 'block',
-        type: 'filters',
-        id: 'filters',
-        results: collection,
-        results_size: collection.products_count
-      %}
-
       {% assign products_per_page = 24 %}
 
       {% if section.settings.enable_infinite_scroll == false %}
@@ -69,7 +62,9 @@
               data-page="{{ paginate.current_page }}"
               data-product-id="{{ product.id }}"
               ref="cards[]"
+              style="position: relative;"
             >
+              <span class="product-grid__badge">({% if forloop.index < 10 %}0{% endif %}{{ forloop.index }})</span>
               {% content_for 'block',
                 type: '_product-card',
                 id: 'product-card',
@@ -93,31 +88,16 @@
 </collection-component>
 
 {% stylesheet %}
-  /* Left sidebar filter typography -- small, uppercase, letter-spaced
-     group labels; plain body-weight option links -- reads as quiet
-     wayfinding rather than a UI control, in keeping with the rest of
-     the site's understated type. Structural filtering behavior (the
-     vertical/sidebar layout itself) is Vessel's own and untouched. */
-  .facets--vertical .facets__summary,
-  .facets--vertical legend,
-  .facets--vertical .sort-select {
-    font-family: var(--font-subheading--family, ui-monospace, monospace);
+  .product-grid__badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    font-family: ui-monospace, 'antarctican-mono', monospace;
     font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #524031;
-  }
-
-  .facets--vertical .facets__form {
-    font-family: var(--font-body--family);
-    font-size: 0.9rem;
-    color: #524031;
-  }
-
-  .facets--vertical [aria-current='true'] {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    text-decoration-color: #C24F2E;
+    letter-spacing: 0.04em;
+    color: #F4F1E7;
+    pointer-events: none;
   }
 {% endstylesheet %}
 
